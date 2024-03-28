@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/assets">
+        <file>assets/audio/bullet.wav</file>
+        <file>assets/audio/damage.wav</file>
+        <file>assets/audio/kill1.mp3</file>
+        <file>assets/audio/kill2.mp3</file>
+        <file>assets/audio/theme.mp3</file>
+        <file>assets/imgs/chicken.png</file>
+        <file>assets/imgs/laser.png</file>
+        <file>assets/imgs/ship.png</file>
+        <file>assets/imgs/bg.jpeg</file>
+    </qresource>
+</RCC>
