@@ -38,6 +38,7 @@ void Enemy::move() {
         if (typeid(*collidingItemsList2[i]) == typeid(Player)) {
             scene()->removeItem(this);
             delete this;
+            player->decreaseHealth();
             return;
         }
     }

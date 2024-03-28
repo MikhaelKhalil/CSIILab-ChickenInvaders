@@ -20,8 +20,22 @@ int main(int argc, char *argv[]) {
     QGraphicsScene scene;
     scene.setSceneRect(0, 0, 800, 600);
 
+    // *******  Show the score and health of the Player ********
+    QGraphicsTextItem *Score = new QGraphicsTextItem;
+    Score->setFont(QFont("times", 16));
+    Score->setDefaultTextColor(Qt::cyan);
+    Score->setPlainText("Score: 0");
+    scene.addItem(Score);
+
+    QGraphicsTextItem *Health = new QGraphicsTextItem;
+    Health->setFont(QFont("times", 16));
+    Health->setDefaultTextColor(Qt::red);
+    Health->setPlainText("Health: 3");
+    Health->setPos(0, 30);
+    scene.addItem(Health);
+
     // *******  Create the Player ********
-    Player *player = new Player();
+    Player *player = new Player(Score, Health);
     player->setPixmap(QPixmap(":/assets/assets/imgs/ship.png").scaled(50, 87));
     scene.addItem(player);
 
@@ -40,6 +54,19 @@ int main(int argc, char *argv[]) {
     QTimer *time = new QTimer();
     QObject::connect(time, SIGNAL(timeout()), player, SLOT(createEnemy()));
     time->start(2000);
+
+    // Play the main theme sound track
+    QAudioOutput *mainThemeSoundOutput = new QAudioOutput;
+    mainThemeSoundOutput->setVolume(1);
+    QMediaPlayer *mainThemeSound = new QMediaPlayer;
+    mainThemeSound->setAudioOutput(mainThemeSoundOutput);
+    mainThemeSound->setSource(QUrl("qrc:/assets/assets/audio/theme.mp3"));
+    mainThemeSound->setLoops(QMediaPlayer::Infinite);
+    mainThemeSound->play();
+
+    // Set the background of the scene
+    QPixmap bg(":/assets/assets/imgs/bg.jpeg");
+    scene.setBackgroundBrush(bg.scaled(800, 600));
 
     return a.exec();
 }

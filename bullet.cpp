@@ -28,6 +28,7 @@ void Bullet::move() {
             scene()->removeItem(this);
             delete collidingItemsList[i];
             delete this;
+            player->increaseScore();
             return;
         }
     }
